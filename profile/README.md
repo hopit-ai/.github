@@ -18,6 +18,8 @@ losses shown**.
 | Model | Task | Size | Availability |
 |---|---|---|---|
 | [**MODA**](https://huggingface.co/HopitAI/moda-fashionsiglip-multiview-203m) | text → product | 203M | open source + open weights |
+| [**MODA Pro Lite+**](https://huggingface.co/HopitAI/moda-pro-lite-plus) | text → product | 213M | open weights + recipe |
+| [**MODA Duo**](https://huggingface.co/HopitAI/moda-duo) | text → product | routes two encoders | open recipe |
 | [**MODA Pro Lite**](https://huggingface.co/HopitAI/moda-pro-lite) | text → product | 213M | open weights |
 | **MODA Pro** | text → product | — | closed · [hosted](https://hopit.ai) |
 | [**MODA-SigLIP-Distilled**](https://huggingface.co/HopitAI/moda-fashion-distilled) | image → product | 203M | open weights |
@@ -25,10 +27,15 @@ losses shown**.
 
 **Where they stand.** MODA-SigLIP-Distilled is the top open model on
 [LookBench](https://serendipityoneinc.github.io/look-bench-page/) image
-retrieval, above a 1.24B-parameter model. MODA Pro is rank 1 or 2 on 9 of 10
-text-to-image benchmark cells across three venues — the only system in our
-comparison without a bad benchmark. MODA Pro Lite beats MODA on catalog search
-(KAGL +10.2%, Polyvore +7.3%) as a plain bi-encoder, no serving recipe.
+retrieval, above a 1.24B-parameter model. On text-to-image, **MODA Pro Lite+**
+leads every model at ≤250M parameters on catalogue search (KAGL +10.9%, Polyvore
++8.7% over MODA), and **MODA Duo** routes each query to whichever open model
+suits its shape, beating both on mixed traffic. Our hosted MODA Pro is rank 1 or
+2 on five of six full-corpus benchmarks — an 878M model beats us on four of them,
+and that is in the tables too.
+
+Every cell is MAP@10 at full corpus under one evaluator (`pytrec_eval
+map_cut.10`), competitors included.
 
 Full tables, including every cell we lose:
 **[hopit-ai.github.io/Moda](https://hopit-ai.github.io/Moda/)**
