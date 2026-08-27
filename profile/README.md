@@ -2,18 +2,19 @@
 <p align="center"><b>The intelligence layer fashion commerce runs on.</b></p>
 <p align="center">
   <a href="https://hopit.ai">hopit.ai</a> ·
-  <a href="https://hopit-ai.github.io/Moda/">Benchmarks</a> ·
+  <a href="https://hopit-ai.github.io/Moda/">Retrieval benchmarks</a> ·
+  <a href="https://hopit-ai.github.io/Moda_ner/">Attribute benchmarks</a> ·
   <a href="https://huggingface.co/HopitAI">Models</a> ·
   <a href="https://hopitai.substack.com/">Research</a>
 </p>
 
 ---
 
-We build fashion-native retrieval and trend intelligence — and we measure it in
-public. Every number below is **full corpus, one harness, competitors included,
+We build fashion-native retrieval, attribute extraction and trend intelligence — and
+we measure it in public. Every number below is **full corpus, one harness, competitors included,
 losses shown**.
 
-### Models
+### Retrieval: which product did they mean?
 
 | Model | Task | Size | Availability |
 |---|---|---|---|
@@ -40,17 +41,49 @@ map_cut.10`), competitors included.
 Full tables, including every cell we lose:
 **[hopit-ai.github.io/Moda](https://hopit-ai.github.io/Moda/)**
 
+### Attribute extraction: what is this garment?
+
+Turning a fashion image into structured product data. Four frozen tracks, never
+averaged, because a model can be strong on clean product shots and weak on
+full-body photos.
+
+| Model | Input | Size | Availability |
+|---|---|---|---|
+| [**MODA_NER(V) Crop**](https://huggingface.co/HopitAI/moda-ner-v-crop) | cropped garment | 203M | open weights (MIT) + open code |
+| [**MODA_NER(V) Catalog**](https://huggingface.co/HopitAI/moda-ner-v-catalog) | catalogue product image | linear heads | open weights (CC BY-NC 4.0) |
+| [**MODA_NER(V) Full-body**](https://huggingface.co/HopitAI/moda-ner-v-fullbody) | full-body photo | 203M | open weights (CC BY-NC 4.0) |
+| **MODA_NER(T)** | product title or description | 150M | benchmark published, weights held |
+
+**Where they stand.** Two wins and two ties against the comparators, no losses.
+On `catalog`, 0.8292 against 0.6657 for FashionCLIP 2.0 with matched supervised
+heads. On `fullbody`, 0.6917 against 0.5943, and the applicability decision —
+knowing an attribute is not visible rather than inventing it — is scored
+separately at 0.6637. Do not read across those rows: different images, different
+fields, different metrics.
+
+Two of the tracks are evaluated against research-only corpora whose terms reach
+derived data, so those weights are non-commercial. That binds us too: they are
+not part of our paid product.
+
+Full tables, protocol and prediction files:
+**[hopit-ai.github.io/Moda_ner](https://hopit-ai.github.io/Moda_ner/)**
+
 ### Repositories
 
 - **[Moda](https://github.com/hopit-ai/Moda)** — the open benchmark and model
   family: harness, evaluation code, and the write-ups, including the
   experiments that failed.
+- **[Moda_ner](https://github.com/hopit-ai/Moda_ner)** — the attribute
+  extraction suite: four track scorers, the manifest builders that recreate the
+  frozen splits, prediction files with their hashes, and the published weights.
 - **[india-trade-cli](https://github.com/hopit-ai/india-trade-cli)** — agentic
   research over Indian equities. Different domain, same conviction: publish the
   method, measure the result.
 
 ### How we work
 
+- **Tracks are never averaged.** A weak result on one track cannot be absorbed
+  by a strong result on another.
 - **Full corpus only.** No subsampled galleries; screening runs are never mixed
   with full-corpus rows.
 - **One harness.** Ours and competitors' models run identical preprocessing and
