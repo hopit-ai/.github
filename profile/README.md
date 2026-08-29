@@ -53,17 +53,22 @@ full-body photos.
 | [**MODA_NER(V) Catalog**](https://huggingface.co/HopitAI/moda-ner-v-catalog) | catalogue product image | linear heads | open weights (CC BY-NC 4.0) |
 | [**MODA_NER(V) Full-body**](https://huggingface.co/HopitAI/moda-ner-v-fullbody) | full-body photo | 203M | open weights (CC BY-NC 4.0) |
 | **MODA_NER(T)** | product title or description | 150M | benchmark published, weights held |
+| **MODA_NER Pro** | declared schema | routes four schemas | closed · [hosted](https://hopit.ai) |
 
 **Where they stand.** Two wins and two ties against the comparators, no losses.
 On `catalog`, 0.8292 against 0.6657 for FashionCLIP 2.0 with matched supervised
 heads. On `fullbody`, 0.6917 against 0.5943, and the applicability decision —
 knowing an attribute is not visible rather than inventing it — is scored
-separately at 0.6637. Do not read across those rows: different images, different
-fields, different metrics.
+separately at 0.6637. Field by field that is all 10 catalogue attributes and 17
+of 18 on full-body, 31% and 19% better on average. Do not read across those
+rows: different images, different fields, different metrics.
 
 Two of the tracks are evaluated against research-only corpora whose terms reach
 derived data, so those weights are non-commercial. That binds us too: they are
 not part of our paid product.
+
+MODA_NER Pro is the hosted tier: the same extraction, trained on your catalogue
+and mapped to your taxonomy rather than the benchmarks'.
 
 Full tables, protocol and prediction files:
 **[hopit-ai.github.io/Moda_ner](https://hopit-ai.github.io/Moda_ner/)**
