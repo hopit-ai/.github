@@ -9,7 +9,7 @@
 
 ---
 
-Hopit is a continual-learning lab built in Asia-Pacific. We build models and
+Hopit is a continual-learning lab. We build models and
 harnesses that learn new tasks, keep what they already know, and improve inside
 the enterprises that use them.
 
@@ -71,4 +71,3 @@ speed and cost. ² Jev Decision Index 0.2.1, 28 September 2026: Hopper (G) 1.2 i
 third of 46 systems under 5B on the chance-corrected headline score (40.77), within
 0.1 of fourth, and 18th of 70 overall. The edition is 76% scored.</sub>
 
-<p align="center"><sub>Built in Asia-Pacific</sub></p>
